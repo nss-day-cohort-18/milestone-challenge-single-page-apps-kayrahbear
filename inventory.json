@@ -1,24 +1,27 @@
 {
 "cars": [
     {
+        "image": "beetle.jpg",
         "make": "Volkswagen",
-        "model": "Rogue",
-        "year": "2006",
-        "price": "8999",
-        "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
+        "model": "Beetle",
+        "year": "1967",
+        "price": "$12,999",
+        "description": "Original car from Wolfsburg, Germany. Car is in excellent condition, fully restored with only 1000km after restoration. Car doesn't have any mechanical issues or body damage. Engine and chassis are fully restored, new brakes. Suspension is lowered. Paintjob is flawless with matching ivory steering wheel. New interior, new seats and upholstery.Car is equipped with original exhaust, but comes with a full aftermarket exhaust which was on the car for about 500km. "
     },
     {
-        "make": "Nissan",
-        "model": "Rogue",
-        "year": "2006",
-        "price": "8999",
-        "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
+        "image": "baywindow.jpg",
+        "make": "Volkswagen",
+        "model": "Bus",
+        "year": "1970",
+        "price": "$14,900",
+        "description": "Type 2/25S. Engine #AK 118565. All maintenance records back to 1998. Original Owner's Manual. Penthouse pop-top, electric fridge, original ice box, water tank, Kenwood CD player and 10 CD player. Runs very well - serviced, super tuned, electronic ignition, brakes repaired at Jason's Bug Ranch in Winter Garden, November 2016. No rust on floor or frame. Vintage vehicle - so she is not perfect. Minor rust along the front windscreen and on the bottom of the side window. Tires are good, but old, therefore need to be replaced. Some window rubber should be replaced soon. She is ready to go camping and touring! A classic VW Bus, in good condition. Always stored inside. Transported to FL in October 2016 from indoor storage in Canada - titled in FL"
     },
     {
-        "make": "Nissan",
-        "model": "Rogue",
-        "year": "2006",
-        "price": "8999",
-        "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
+        "image": "shorty.jpg",
+        "make": "Volkswagen",
+        "model": "Bus/ Custom Shorty",
+        "year": "1966",
+        "price": "$28,500",
+        "description": "Bus originally chopped in 1986. Found and resurrected by Gas Monkey Garage in 2014. Front beam suspension by Wagons West, Airkewld brakes, rear suspension, rear brakes and wheels are from Airkewld as well. Wolfsburg West interior, Black Mountain seats, 2.0 Liter engine by Luck's Fabshop. Paint and body resurrection by Gas Monkey Garage for the TV show Fast N' Loud. Intended for show and display use. And yes, it does pop wheelies. A definite show-stopper."
     }]
 }

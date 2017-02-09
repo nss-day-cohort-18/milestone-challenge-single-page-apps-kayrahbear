@@ -1,32 +1,16 @@
 {
-  "name": "car-lot-milestone",
-  "version": "1.0.0",
-  "description": "see README.md",
-  "main": "index.html",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nss-day-cohort-18/milestone-challenge-single-page-apps-kayrahbear.git"
-  },
-  "author": "Kayla Brewer",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nss-day-cohort-18/milestone-challenge-single-page-apps-kayrahbear/issues"
-  },
-  "homepage": "https://github.com/nss-day-cohort-18/milestone-challenge-single-page-apps-kayrahbear#readme",
+  "name": "kaylascarlot",
+  "version": "0.1.0",
   "devDependencies": {
-    "bootstrap": "^3.3.7",
-    "browserify": "^14.0.0",
-    "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt": "^0.4.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "matchdep": "^0.3.0",
+    "grunt-browserify": "^5.0.0"
+  },
+  "dependencies": {
     "handlebars": "^4.0.6",
-    "jshint": "^2.9.4",
-    "jshint-stylish": "^2.2.1",
-    "matchdep": "^1.0.1",
-    "sass": "^0.5.0"
+    "hbsfy": "^2.7.0"
   }
 }

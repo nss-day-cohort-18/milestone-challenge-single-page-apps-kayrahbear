@@ -1,28 +1,5 @@
 # Single Page Applications Milestone Challenge
 
-## Setup
-
-1. Create the working directory for the challenge first.
-
-    ```bash
-    mkdir -p ~/workspace/challenges/spa && cd $_
-    ```
-
-1. Clone this repository and `cd` into the directory it creates.
-1. Now run the following commands.
-
-    ```bash
-    git checkout -b challenge
-    touch index.html
-    mkdir css && touch css/styles.css
-    mkdir javascripts && touch javascripts/main.js
-    touch inventory.json
-    ```
-
-You are now ready to work in the `challenge` branch.
-
-When your work in complete, push up the branch (`git push origin challenge`) and submit the pull request on Github.
-
 ## Instructions
 
 You operate a used car lot, and need to have an application where you can update the description and availability of each car in your inventory. You are going to using the Bootstrap grid to lay out your HTML structure.
@@ -49,56 +26,12 @@ You operate a used car lot, and need to have an application where you can update
     1. A car DOM element that was clicked on.
     1. A color name of your choice (see behavior requirement 5 above).
 
-# Starter Code
+----
+# Left To-Do
+2/8/2017 11:30pm
 
-Please read, and feel free to use the code below to get started.
+1. Add event handlers to change cards when clicked
+1. Add event handler to allow for editing of the description via the textbox in the Nav
+1. Scroll bar for descriptions?
 
-##### inventory.json
-
-```json
-{
-  "cars": [
-    {
-      "make": "Nissan",
-      "model": "Rogue",
-      "year": "2006",
-      "price": "8999",
-      "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
-    }
-  ]
-}
-```
-
-##### main.js
-
-```js
-function populatePage (inventory) {
-  // Loop over the inventory and populate the page
-  
-  // Now that the DOM is loaded, establish all the event listeners needed
-  CarLot.activateEvents();
-}
-
-// Load the inventory and send a callback function to be
-// invoked after the process is complete
-CarLot.loadInventory();
-```
-
-##### CarLot.js
-
-```js
-var CarLot = (function () {
-  var inventory = [];
-
-  return {
-    loadInventory: function (callback) {
-      var inventoryLoader = new XMLHttpRequest();
-
-      inventoryLoader.addEventListener("load", function () {
-
-      });
-    }
-  };
-
-})();
-```
+### This project utilizes jQuery, Sass, Handlebars, Browserify, and Bootstrap.
