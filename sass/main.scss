@@ -11,8 +11,9 @@ h2 {
 }
 
 img {
-    padding-left: 2.75px;
+    padding-left: 15px;
     padding-top: 2.5px;
+    max-width: 335px;
 }
 
 .card {
@@ -21,4 +22,15 @@ img {
 
 body {
     background-color: #CED7DB;
+}
+
+.isClicked {
+    border: 5px solid #009587 !important;
+    color: white;
+    background-color: #393838;
+
+    h2 {
+            background-color: inherit;
+    }
+
 }

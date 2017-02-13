@@ -21,37 +21,75 @@ module.exports = carInfo;  //exports (sends out) the module we just created so o
 },{}],2:[function(require,module,exports){
 "use strict";
 
+let cardChange = {};
+
+cardChange.highlightCard = (event) => {
+  var carCards = document.getElementsByClassName("isClicked");
+  if (carCards.length > 0) {
+    for (var i = 0; i < carCards.length; i++ ) {
+      $(carCards[i]).removeClass("isClicked");
+    }
+  }
+  var card = event.target.closest(".card");
+  $("#editDesc").focus();
+  card.classList.add("isClicked"); //toggle clicked class
+};
+
+cardChange.editCard = () => {
+  let $copy = $(".description");
+  $(".isClicked").find(".description").text($("#editDesc").val());
+};
+
+module.exports = cardChange;
+
+},{}],3:[function(require,module,exports){
+"use strict";
+
+let clickChange = require("./cardChange.js");
+
+var throwError = function () {
+    window.alert("Please click a card to begin editing");
+};
+
+function activateChange(){
+    $(".card").click(clickChange.highlightCard);
+    $("#editDesc").keyup(function(){
+        let highlighted = document.getElementsByClassName("isClicked");
+        if (highlighted.length === 0) {
+            throwError();
+        }else {
+            clickChange.editCard();
+        }
+    });
+}
+
+module.exports = activateChange;
+
+},{"./cardChange.js":2}],4:[function(require,module,exports){
+"use strict";
+
 //declare variables for seperate .js and template
 let Handlebars = require("hbsfy/runtime"),
     cardTemplate = require("../templates/carLot.hbs"),
-    carInventory = require("./carLotInventory.js");
+    carInventory = require("./carLotInventory.js"),
+    clickEvents = require("./events.js");
 
 function populatePage(inventory) {
     let cardDiv = document.createElement("div"); //make an empty div
     cardDiv.innerHTML = cardTemplate(inventory); //set the HTML of that div to the Handlebars template we made
     $("#carCards").append(cardDiv); //the new div to the div we already have
-    }
+
+    clickEvents();
+}
 
     carInventory.loadInventory() //run the loadInventory function from the inventory js
     .then( //after that loads do this function below
         function(weGotIt) {
             populatePage(weGotIt); //run populate page function with data from loadInventory function
             console.log("cars", weGotIt);
-    },
-
-    function(reason) {
-        console.log("you broke it! boo!");
     });
 
-//   // Now that the DOM is loaded, establish all the event listeners needed
-//   CarLot.activateEvents();
-// }
-//
-// // Load the inventory and send a callback function to be
-// // invoked after the process is complete
-// CarLot.loadInventory();
-
-},{"../templates/carLot.hbs":23,"./carLotInventory.js":1,"hbsfy/runtime":22}],3:[function(require,module,exports){
+},{"../templates/carLot.hbs":25,"./carLotInventory.js":1,"./events.js":3,"hbsfy/runtime":24}],5:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -119,7 +157,7 @@ exports['default'] = inst;
 module.exports = exports['default'];
 
 
-},{"./handlebars/base":4,"./handlebars/exception":7,"./handlebars/no-conflict":17,"./handlebars/runtime":18,"./handlebars/safe-string":19,"./handlebars/utils":20}],4:[function(require,module,exports){
+},{"./handlebars/base":6,"./handlebars/exception":9,"./handlebars/no-conflict":19,"./handlebars/runtime":20,"./handlebars/safe-string":21,"./handlebars/utils":22}],6:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -225,7 +263,7 @@ exports.createFrame = _utils.createFrame;
 exports.logger = _logger2['default'];
 
 
-},{"./decorators":5,"./exception":7,"./helpers":8,"./logger":16,"./utils":20}],5:[function(require,module,exports){
+},{"./decorators":7,"./exception":9,"./helpers":10,"./logger":18,"./utils":22}],7:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -243,7 +281,7 @@ function registerDefaultDecorators(instance) {
 }
 
 
-},{"./decorators/inline":6}],6:[function(require,module,exports){
+},{"./decorators/inline":8}],8:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -274,7 +312,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":20}],7:[function(require,module,exports){
+},{"../utils":22}],9:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -327,7 +365,7 @@ exports['default'] = Exception;
 module.exports = exports['default'];
 
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -375,7 +413,7 @@ function registerDefaultHelpers(instance) {
 }
 
 
-},{"./helpers/block-helper-missing":9,"./helpers/each":10,"./helpers/helper-missing":11,"./helpers/if":12,"./helpers/log":13,"./helpers/lookup":14,"./helpers/with":15}],9:[function(require,module,exports){
+},{"./helpers/block-helper-missing":11,"./helpers/each":12,"./helpers/helper-missing":13,"./helpers/if":14,"./helpers/log":15,"./helpers/lookup":16,"./helpers/with":17}],11:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -416,7 +454,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":20}],10:[function(require,module,exports){
+},{"../utils":22}],12:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -512,7 +550,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../exception":7,"../utils":20}],11:[function(require,module,exports){
+},{"../exception":9,"../utils":22}],13:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -539,7 +577,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../exception":7}],12:[function(require,module,exports){
+},{"../exception":9}],14:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -570,7 +608,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":20}],13:[function(require,module,exports){
+},{"../utils":22}],15:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -598,7 +636,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -612,7 +650,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -647,7 +685,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":20}],16:[function(require,module,exports){
+},{"../utils":22}],18:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -696,7 +734,7 @@ exports['default'] = logger;
 module.exports = exports['default'];
 
 
-},{"./utils":20}],17:[function(require,module,exports){
+},{"./utils":22}],19:[function(require,module,exports){
 (function (global){
 /* global window */
 'use strict';
@@ -720,7 +758,7 @@ module.exports = exports['default'];
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1019,7 +1057,7 @@ function executeDecorators(fn, prog, container, depths, data, blockParams) {
 }
 
 
-},{"./base":4,"./exception":7,"./utils":20}],19:[function(require,module,exports){
+},{"./base":6,"./exception":9,"./utils":22}],21:[function(require,module,exports){
 // Build out our basic SafeString type
 'use strict';
 
@@ -1036,7 +1074,7 @@ exports['default'] = SafeString;
 module.exports = exports['default'];
 
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1162,22 +1200,22 @@ function appendContextPath(contextPath, id) {
 }
 
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 // Create a simple path alias to allow browserify to resolve
 // the runtime on a supported path.
 module.exports = require('./dist/cjs/handlebars.runtime')['default'];
 
-},{"./dist/cjs/handlebars.runtime":3}],22:[function(require,module,exports){
+},{"./dist/cjs/handlebars.runtime":5}],24:[function(require,module,exports){
 module.exports = require("handlebars/runtime")["default"];
 
-},{"handlebars/runtime":21}],23:[function(require,module,exports){
+},{"handlebars/runtime":23}],25:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<!-- //4 grid wide card -->\r\n<div id=\"card--"
-    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
+  return "<!-- //4 grid wide card -->\r\n<div id=\"car"
+    + alias4(((helper = (helper = helpers.year || (depth0 != null ? depth0.year : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"year","hash":{},"data":data}) : helper)))
     + "\" class=\"col-md-4\">\r\n\r\n    <!-- //main card class, added required styling -->\r\n    <div class=\"card\" style=\"border: 2px solid black\">\r\n        <!-- //image -->\r\n        <img class=\"card-img-top\" src=\"/images/"
     + alias4(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"image","hash":{},"data":data}) : helper)))
     + "\" alt=\"Card image cap\">\r\n        <div class=\"card-block\">\r\n            <!-- //year, make, and model (ex. 1996 Ford Focus) -->\r\n            <h2 class=\"card-title\">"
@@ -1188,7 +1226,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.model || (depth0 != null ? depth0.model : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"model","hash":{},"data":data}) : helper)))
     + "</h3>\r\n            <h4 class=\"card-text\">"
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
-    + "</h4>\r\n            <!-- //description. can I put a scroll bar here? -->\r\n            <p class=\"card-text\">"
+    + "</h4>\r\n            <!-- //description. can I put a scroll bar here? -->\r\n            <p class=\"card-text description\">"
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
     + "</p>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -1198,4 +1236,4 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.cars : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 
-},{"hbsfy/runtime":22}]},{},[2]);
+},{"hbsfy/runtime":24}]},{},[4]);
